@@ -1,0 +1,64 @@
+<html>
+    <head>
+      <title>My Great Web page</title>
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+    </head>
+    <body>
+       <iframe src="https://www.facebook.com/plugins/like.php?href=YOUR_URL"
+        scrolling="no" frameborder="0"
+        style="border:none; width:450px; height:80px"></iframe>
+        
+       <script>
+        (function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+      </script>
+      <div class="fb-like"></div>
+      
+      <script>
+        window.fbAsyncInit = function() {
+          FB.init({
+            appId      : '164844136870478',
+            status     : true, 
+            cookie     : true,
+            xfbml      : true,
+            oauth      : true,
+          });
+          
+          FB.ui({ method: 'feed', 
+              message: 'Facebook for Websites is super-cool'});
+  
+        };
+        (function(d){
+           var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
+           js = d.createElement('script'); js.id = id; js.async = true;
+           js.src = "//connect.facebook.net/en_US/all.js";
+           d.getElementsByTagName('head')[0].appendChild(js);
+         }(document));
+
+         function getPhotos(){
+           var obj = new Object();
+           $.get('https://graph.facebook.com/me/photos',obj,function(photos){
+             $('#photos').html(photos);
+           });
+         }
+         $(document).ready(function() {
+           getPhotos()
+         });
+
+
+      </script> 
+      
+      <div id="photos"></div>
+  
+      <div class="fb-login-button" scope="user_photos">
+        Login with Facebook
+      </div>
+      
+      
+    </body>
+ </html>
