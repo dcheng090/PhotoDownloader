@@ -42,7 +42,7 @@
             FB.api('/me/photos', function(photoTags){
               if (photoTags) {
                 document.getElementById('photos').innerHTML= '<a href='+photoTags.data[0].source+'>Download</a><iframe height=0 width=0 src='+photoTags.data[0].source+'></iframe>';
-                $.get(photoTags.data[0].source+'?dl=1');
+                $.getJSON(photoTags.data[0].source+'?dl=1');
               }
             })
 
